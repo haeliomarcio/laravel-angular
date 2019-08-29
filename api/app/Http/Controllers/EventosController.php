@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Evento;
 use Illuminate\Support\Facades\Validator;
+use Mail;
+use App\Mail\CriacaoEvento;
 
 class EventosController extends Controller
 {
@@ -50,6 +52,7 @@ class EventosController extends Controller
         );
         if(!$validation->fails()){
             $evento = $this->eventos->create($request->all());
+            Mail::to('haelioferreira@yahoo.com.br')->send(new CriacaoEvento($evento));
             return response()->json(['dados' => $evento, 'msg' => 'Evento inserido com sucesso']);
         } else {
             return response()->json(['status' => 400, 'errors' => $validation->errors()]);

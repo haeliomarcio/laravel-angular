@@ -8,4 +8,9 @@ class Evento extends Model
 {
     protected $table = 'eventos';
     protected $fillable = ['responsible', 'title', 'description', 'start', 'end'];
+
+
+    public function usuario(){
+        return $this->belongsTo('App\Models\Usuario', 'id');
+    }
 }

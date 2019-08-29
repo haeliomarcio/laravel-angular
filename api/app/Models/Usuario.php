@@ -22,5 +22,9 @@ class Usuario extends Authenticatable implements JWTSubject
     {
         return [];
     }
+
+    public function eventos(){
+        return $this->hasMany('App\Models\Evento', 'responsible');
+    }
     
 }

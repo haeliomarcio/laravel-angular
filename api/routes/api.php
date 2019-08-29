@@ -13,10 +13,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware(['isLogged'])->group(function () {
+//Route::middleware(['isLogged'])->group(function () {
     Route::post('login', 'LoginController@login');
     Route::post('recovery-password', 'RecoveryPasswordController@login');
 
     Route::resources(['usuarios' => 'UsuariosController']);
     Route::resources(['eventos' => 'EventosController']);
-});
+//});
