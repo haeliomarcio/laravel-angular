@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 
 import { Evento } from './evento';
 import { EventoService } from './evento.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class EventoComponent implements OnInit {
   constructor(
     private eventoService: EventoService, 
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
    ) {
     this.listarEventos();
   }
@@ -52,12 +53,17 @@ export class EventoComponent implements OnInit {
       responsible: 1,
     };
 
-    if(this.eventoForm.get('id').value != ''){
+    if(this.eventoForm.get('id').value != null){
       this.atualizarEvento(evento);
     } else {
       this.eventoService.criarEvento(evento)
       .subscribe(data => {
-        this.toastr.success('Evento Registrado com Sucesso!', 'Sucesso');
+        Swal.fire({
+          title: 'Sucesso!',
+          text: 'Evento Registrado com Sucesso!',
+          type: 'success',
+          confirmButtonText: 'OK'
+        });
         this.limpaForm();
         this.listarEventos();
       });
@@ -82,16 +88,36 @@ export class EventoComponent implements OnInit {
   atualizarEvento(evento){
     this.eventoService.atualizarEvento(evento)
     .subscribe(data => {
-      this.toastr.info('Evento Atualizado com Sucesso!', 'Informação');
+      Swal.fire(
+        'Sucesso!',
+        'Evento Atualizado com Sucesso!',
+        'success'
+      )
       this.listarEventos();
     });
   }
 
   deletarEvento(evento: Evento){
-    this.eventoService.deletarEvento(evento)
-    .subscribe(data => {
-      this.toastr.warning('Evento Deletado com Sucesso!', 'Aviso');
-    });
+
+    Swal.fire({
+      title: 'Deletar',
+      text: "Tem certeza de que deseja deletar?",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sim'
+    }).then((result) => {
+      if (result.value) {
+        this.eventoService.deletarEvento(evento)
+        .subscribe();
+        Swal.fire(
+          'Deletado!',
+          'Evento Deletado com Sucesso!',
+          'success'
+        )
+      }
+    })
   }
 
   limpaForm(){
