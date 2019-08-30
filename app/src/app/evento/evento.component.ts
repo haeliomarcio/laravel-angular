@@ -17,6 +17,7 @@ export class EventoComponent implements OnInit {
   evento: Evento;
   listEventos = [];
   eventoForm: FormGroup;
+  title = 'Cadastrar Novo Evento';
 
   constructor(
     private eventoService: EventoService, 
@@ -72,6 +73,7 @@ export class EventoComponent implements OnInit {
 
 
   editarEvento(evento: Evento){
+    this.title = 'Editar Evento';
     this.eventoService.consultarEvento(evento)
     .subscribe(data => {
       this.eventoForm.setValue({
@@ -121,6 +123,7 @@ export class EventoComponent implements OnInit {
   }
 
   limpaForm(){
+    this.title = 'Cadastrar Novo Evento';
     this.eventoForm.reset();
   }
   

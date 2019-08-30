@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Validator;
-
+use Hash;
 class UsuariosController extends Controller
 {
     protected $usuarios;
@@ -49,7 +49,9 @@ class UsuariosController extends Controller
             'password' => 'required',
         ]);
         if(!$validation->fails()){
-            $usuario = $this->usuarios->create($request->all());
+            $inputs = $request->all();
+            $inputs['password'] = Hash::make($inputs['password']);
+            $usuario = $this->usuarios->create($inputs);
             return response()->json(['dados' => $usuario, 'msg' => 'Usuário inserido com sucesso']);
         } else {
             return response()->json(['status' => 400, 'errors' => $validation->errors()]);
@@ -99,7 +101,9 @@ class UsuariosController extends Controller
         );
         $usuario = $this->usuarios->find($id);
         if(!$validation->fails()){
-            $usuarioAtualizado = $usuario->update($request->all());
+            $inputs = $request->all();
+            $inputs['password'] = Hash::make($inputs['password']);
+            $usuarioAtualizado = $usuario->update($inputs);
             return response()->json(['dados' => $usuarioAtualizado, 'msg' => 'Usuário atualizado com sucesso']);
         } else {
             return response()->json(['status' => 400, 'errors' => $validation->errors()]);

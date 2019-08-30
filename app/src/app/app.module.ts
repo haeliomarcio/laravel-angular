@@ -13,6 +13,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { EventoComponent } from './evento/evento.component';
 import { LoginComponent } from './login/login.component';
 import { CalendarioComponent } from './calendario/calendario.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { CalendarioComponent } from './calendario/calendario.component';
     EventoComponent,
     LoginComponent,
     CalendarioComponent,
+    CadastroComponent,
     
   ],
   imports: [
