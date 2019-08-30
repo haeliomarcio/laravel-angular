@@ -2,16 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {  BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { EventoComponent } from './evento/evento.component';
 import { LoginComponent } from './login/login.component';
-import { EventoService } from './evento/evento.service';
 
 @NgModule({
   declarations: [
@@ -26,8 +24,8 @@ import { EventoService } from './evento/evento.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
-    ToastrModule
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -52,7 +52,6 @@ class EventosController extends Controller
         );
         if(!$validation->fails()){
             $evento = $this->eventos->create($request->all());
-            Mail::to('haelioferreira@yahoo.com.br')->send(new CriacaoEvento($evento));
             return response()->json(['dados' => $evento, 'msg' => 'Evento inserido com sucesso']);
         } else {
             return response()->json(['status' => 400, 'errors' => $validation->errors()]);
@@ -116,6 +115,6 @@ class EventosController extends Controller
     {
         $evento = $this->eventos->find($id);
         $evento->delete();
-        return json(['msg' => 'Evento deletado com sucesso.']);
+        return response()->json(['msg' => 'Evento deletado com sucesso.']);
     }
 }

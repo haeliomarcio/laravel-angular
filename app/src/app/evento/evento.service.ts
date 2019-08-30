@@ -1,36 +1,34 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from "rxjs";
+
 import { Evento } from './evento';
 
 @Injectable({providedIn: 'root'})
 export class EventoService{
     
     urlApi = 'http://localhost:8000/api/eventos';
-    private evento: Evento;
-
-    headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Accept', 'application/json');
-    private httpOptions = {
-      headers: this.headers
-    };
 
     constructor(private http: HttpClient){
     }
 
-    listarEventos(){
+    listarEventos(): Observable<Object[]>{
         return this.http.get<Object[]>(this.urlApi);
     }
 
-    criarEvento(evento: Evento){
-        return this.http.post<Evento>(this.urlApi, evento, this.httpOptions);
+    consultarEvento(evento: Evento): Observable<Evento>{
+        return this.http.get<Evento>(this.urlApi+'/'+evento.id);
     }
 
-    deletarEvento(evento: Evento){
-        return this.http.delete(this.urlApi+'/'+evento.id, this.httpOptions);
+    criarEvento(evento: Evento): Observable<Evento>{
+        return this.http.post<Evento>(this.urlApi, evento);
     }
 
-    atualizarEvento(evento: Evento){
-        return this.http.put(this.urlApi, evento);
+    atualizarEvento(evento: Evento): Observable<Evento>{
+        return this.http.put<Evento>(this.urlApi+'/'+evento.id, evento);
+    }
+
+    deletarEvento(evento: Evento): Observable<{}>{
+        return this.http.delete(this.urlApi+'/'+evento.id);
     }
 }

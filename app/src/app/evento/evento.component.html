@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-6">
-        <a href="Javascript:void(0);" class="btn btn-success"  data-toggle="modal" data-target="#modalEvento" data-whatever="@mdo">Novo Evento</a>
+        <a href="Javascript:void(0);" (click)="limpaForm()" class="btn btn-success"  data-toggle="modal" data-target="#modalEvento" data-whatever="@mdo">Novo Evento</a>
     </div>
     <div class="col-md-6">
         <form action="" class="form-inline">
@@ -23,6 +23,7 @@
             <th>Descrição</th>
             <th>Inicio</th>
             <th>Fim</th>
+            <th>Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -33,6 +34,11 @@
             <td>{{list.description}}</td>
             <td>{{list.start}}</td>
             <td>{{list.end}}</td>
+            <td>
+                <a href="javascript:void(0)" class="btn btn-warning" data-toggle="modal" data-target="#modalEvento" (click)="editarEvento(list)">Editar</a> 
+                <a href="javascript:void(0)" class="btn btn-danger" (click)="deletarEvento(list)">Excluir</a>
+            </td>
+            
         </tr>
     </tbody>
 </table>
@@ -49,7 +55,9 @@
       </div>
       <div class="modal-body">
 
-        <form [formGroup]="eventoForm" (submit)="criarEvento()">
+        <form [formGroup]="eventoForm">
+            <input type="hidden" formControlName="id" class="form-control" id="id">
+            <input type="hidden" formControlName="responsible" class="form-control" id="responsible">
           <div class="form-group">
             <label for="titulo" class="col-form-label">Título:</label>
             <input type="text" formControlName="title" class="form-control" id="titulo">
@@ -72,11 +80,12 @@
                 </div>
               </div>
           </div>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" (click)="criarEvento()" class="btn btn-success">Salvar</button>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-success">Salvar</button>
+        
       </div>
     </div>
   </div>
