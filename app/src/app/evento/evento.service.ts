@@ -19,7 +19,7 @@ export class EventoService{
     consultarEvento(evento: Evento): Observable<Evento>{
         return this.http.get<Evento>(this.urlApi+'/'+evento.id);
     }
-
+    
     criarEvento(evento: Evento): Observable<Evento>{
         return this.http.post<Evento>(this.urlApi, evento);
     }

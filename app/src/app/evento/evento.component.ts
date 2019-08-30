@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators  } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { Evento } from './evento';
 import { EventoService } from './evento.service';
+
 
 @Component({
   selector: 'app-evento',
@@ -63,6 +64,7 @@ export class EventoComponent implements OnInit {
     }
   }
 
+
   editarEvento(evento: Evento){
     this.eventoService.consultarEvento(evento)
     .subscribe(data => {
@@ -70,7 +72,7 @@ export class EventoComponent implements OnInit {
         id: data.id,
         title: data.title,
         description: data.description,
-        start: data.start,
+        start:  data.start,
         end: data.end,
         responsible: data.responsible
       });
