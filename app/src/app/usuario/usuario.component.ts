@@ -52,7 +52,7 @@ export class UsuarioComponent implements OnInit {
       password: this.usuarioForm.get('password').value
     };
 
-    if(this.usuarioForm.get('id').value != ''){
+    if(this.usuarioForm.get('id').value != null){
       this.atualizarUsuario(usuario);
     } else {
       this.usuarioService.criarUsuario(usuario)

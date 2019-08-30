@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::post('login', 'LoginController@login');
+Route::post('registrar', 'LoginController@registrar');
+
+
 
 //Route::middleware(['isLogged'])->group(function () {
     Route::post('login', 'LoginController@login');

@@ -26,7 +26,7 @@ class LoginController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function register(Request $request)
+    public function registrar(Request $request)
     {
             $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',

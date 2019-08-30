@@ -2,15 +2,15 @@
     <div class="col-md-4 offset-md-4">
         <div class="panel panel-default ">
             <div class="panel-body">
-                <form action="">
+                <form [formGroup]="loginForm" action="">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Login">
+                        <input formControlName="email" type="email" class="form-control" placeholder="Login">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Password">
+                        <input formControlName="senha" type="password" class="form-control" placeholder="Password">
                     </div>
                     <div class="form-group">
-                        <button style="float: right" type="button" class="form-control" class="btn btn-primary">Acessar</button>
+                        <button (click)="login()" style="float: right" type="button" class="form-control" class="btn btn-primary">Acessar</button>
                         <a routerLink="">Esqueceu sua senha?</a><br>
                         <a routerLink="cadastre-se">Cadastre-se</a>
                     </div>

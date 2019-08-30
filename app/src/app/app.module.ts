@@ -6,12 +6,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { Interceptor } from './auth/interceptor.module';
 
 import { AppComponent } from './app.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { EventoComponent } from './evento/evento.component';
 import { LoginComponent } from './login/login.component';
-import { DatePipe } from '@angular/common';
+import { CalendarioComponent } from './calendario/calendario.component';
 
 @NgModule({
   declarations: [
@@ -19,11 +20,13 @@ import { DatePipe } from '@angular/common';
     UsuarioComponent,
     EventoComponent,
     LoginComponent,
+    CalendarioComponent,
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    Interceptor,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
