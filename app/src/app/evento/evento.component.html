@@ -13,7 +13,7 @@
         </form>
     </div>
 </div>
-
+<div class="row">
 <table class="table hover">
     <thead>
         <tr>
@@ -33,10 +33,10 @@
             <td>{{list.responsible}}</td>
             <td>{{list.description}}</td>
             <td>{{list.start | date: 'dd/MM/yyyy'}}</td>
-            <td>{{list.end}}</td>
+            <td>{{list.end | date: 'dd/MM/yyyy'}}</td>
             <td>
-                <a href="javascript:void(0)" class="btn btn-warning" data-toggle="modal" data-target="#modalEvento" (click)="editarEvento(list)">Editar</a> 
-                <a href="javascript:void(0)" class="btn btn-danger" (click)="deletarEvento(list)">Excluir</a>
+                <a style="margin: 2px;" href="javascript:void(0)" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#modalEvento" (click)="editarEvento(list)">Editar</a> 
+                <a href="javascript:void(0)" class="btn btn-sm btn-danger" (click)="deletarEvento(list)">Excluir</a>
             </td>
             
         </tr>
@@ -80,7 +80,7 @@
                 </div>
               </div>
           </div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button style="margin: 1px;" type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             <button type="button" (click)="criarEvento()" class="btn btn-success">Salvar</button>
         </form>
       </div>
@@ -89,4 +89,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

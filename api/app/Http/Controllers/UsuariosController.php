@@ -91,7 +91,7 @@ class UsuariosController extends Controller
             $request->all(),
             [
                 'name' => 'required',
-                'email' => 'required|unique',
+                'email' => 'required|unique:usuarios,email,'.$id,
                 'birthday' => 'required',
                 'phone' => 'required',
                 'password' => 'required',
