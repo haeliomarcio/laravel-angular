@@ -5,4 +5,5 @@ export interface Usuario{
     birthday: Date;
     phone: string;
     password: string;
+    password_confirmation: string;
 }

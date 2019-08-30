@@ -37,7 +37,8 @@ export class UsuarioComponent implements OnInit {
       email: [''],
       phone: [''],
       birthday: [''],
-      password: ['']
+      password: [''],
+      password_confirmation: ['']
     });
   }
 
@@ -49,7 +50,8 @@ export class UsuarioComponent implements OnInit {
       email: this.usuarioForm.get('email').value,
       phone: this.usuarioForm.get('phone').value,
       birthday: this.usuarioForm.get('birthday').value,
-      password: this.usuarioForm.get('password').value
+      password: this.usuarioForm.get('password').value,
+      password_confirmation: this.usuarioForm.get('password_confirmation').value
     };
 
     if(this.usuarioForm.get('id').value != null){
@@ -74,7 +76,8 @@ export class UsuarioComponent implements OnInit {
         email: data.email,
         phone: data.phone,
         birthday:  data.birthday,
-        password: ''
+        password: '',
+        password_confirmation: ''
       });
     });
   }

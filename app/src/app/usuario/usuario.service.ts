@@ -21,7 +21,8 @@ export class  UsuarioService{
     }
     
     criarUsuario(usuario: Usuario): Observable<Usuario>{
-        return this.http.post<Usuario>(this.urlApi, usuario);
+        //return this.http.post<Usuario>(this.urlApi, usuario);
+        return this.http.post<Usuario>('http://localhost:8000/api/registrar', usuario);
     }
 
     atualizarUsuario(usuario: Usuario): Observable<Usuario>{
