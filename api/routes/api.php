@@ -14,13 +14,9 @@ use Illuminate\Http\Request;
 */
 Route::post('login', 'LoginController@login');
 Route::post('registrar', 'LoginController@registrar');
+Route::post('consultaUsuarioLogado', 'LoginController@getAuthenticatedUser');
 
-
-
-//Route::middleware(['isLogged'])->group(function () {
-    Route::post('login', 'LoginController@login');
-    Route::post('recovery-password', 'RecoveryPasswordController@login');
-
+Route::group(['middleware' => ['isLogged']], function () {
     Route::resources(['usuarios' => 'UsuariosController']);
     Route::resources(['eventos' => 'EventosController']);
-//});
+});

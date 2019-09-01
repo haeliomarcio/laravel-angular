@@ -8,8 +8,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 export class HttpsRequestInterceptor implements HttpInterceptor {
     
     intercept( req: HttpRequest<any>, next: HttpHandler,): Observable<HttpEvent<any>> {
+        
+        const token = localStorage.getItem('currentUser');
         const dupReq = req.clone({
-            //headers: req.headers.set('token', 'DCtbqRXC8L'),
+            headers: req.headers.set('Authorization', 'Bearer ' + token),
         });
         return next.handle(dupReq);
     }

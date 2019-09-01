@@ -14,6 +14,9 @@ import { EventoComponent } from './evento/evento.component';
 import { LoginComponent } from './login/login.component';
 import { CalendarioComponent } from './calendario/calendario.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { CoreModule } from './core/code.module';
+import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     LoginComponent,
     CalendarioComponent,
     CadastroComponent,
-    
+    HomeComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -34,7 +38,8 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     ReactiveFormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

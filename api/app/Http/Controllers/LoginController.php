@@ -6,15 +6,21 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use JWTAuth;
 
 class LoginController extends Controller
 {
+    protected $usuario;
+    public function __construct(Usuario $usuario)
+    {
+        $this->usuario = $usuario;
+    }
+
     public function login(Request $request)
     {
+            $usuario  = $this->usuario->where('email', $request->email)->first();
         $credentials = $request->only('email', 'password');
-
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'Usuário e Senha inválido.'], 400);
@@ -23,14 +29,14 @@ class LoginController extends Controller
             return response()->json(['error' => 'Erro ao criar Token'], 500);
         }
 
-        return response()->json(compact('token'));
+        return response()->json(compact('usuario', 'token'));
     }
 
     public function registrar(Request $request)
     {
             $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:usuarios',
+            'email' => 'required|string|email|max:255|unique:usuarios', 
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -51,6 +57,7 @@ class LoginController extends Controller
 
     public function getAuthenticatedUser()
         {
+                print_r(JWTAuth::parseToken()->authenticate()); die;
                 try {
 
                         if (! $usuario = JWTAuth::parseToken()->authenticate()) {

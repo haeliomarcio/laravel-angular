@@ -7,7 +7,7 @@ use JWTAuth;
 use Exception;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
-class IsLogged
+class IsLogged extends BaseMiddleware
 {
     /**
      * Handle an incoming request.

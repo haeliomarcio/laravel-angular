@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,13 +13,14 @@ export class LoginComponent implements OnInit {
 
   urlApi = 'http://localhost:8000/api/login';
   loginForm: FormGroup;
+  token = '';
 
   constructor(
     private http: HttpClient,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
     ) { 
-
-     }
+    }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -31,10 +34,20 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.get('email').value,
       password: this.loginForm.get('senha').value,
     };
-    this.http.post(this.urlApi, credenciais)
+    this.http.post<Object>(this.urlApi, credenciais)
     .subscribe(data => {
-      console.log(data);
+      if(data){
+          this.token = data['token'];
+          localStorage.setItem('currentUser', this.token);
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Usuário logado com Sucesso!',
+            type: 'success',
+          });
+          setTimeout(() => {
+            location.href = '/calendario';
+          }, 2000);
+      }
     });
   }
-
 }
