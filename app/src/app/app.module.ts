@@ -6,16 +6,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
-import { Interceptor } from './auth/interceptor.module';
+import { Interceptor } from './core/auth/interceptor.module';
 
+import { CoreModule } from './core/code.module';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { EventoComponent } from './evento/evento.component';
-import { LoginComponent } from './login/login.component';
 import { CalendarioComponent } from './calendario/calendario.component';
-import { CadastroComponent } from './cadastro/cadastro.component';
-import { CoreModule } from './core/code.module';
-import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -25,7 +24,6 @@ import { HomeComponent } from './home/home.component';
     EventoComponent,
     LoginComponent,
     CalendarioComponent,
-    CadastroComponent,
     HomeComponent,
 
   ],

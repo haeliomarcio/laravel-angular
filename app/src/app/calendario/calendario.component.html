@@ -1,1 +1,13 @@
-<p>calendario works!</p>
+<br>
+<div class="row">
+    <div class="col-md-3" *ngFor="let evento of eventos.data">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+              <h5 class="card-title">{{evento.title}}</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">{{evento.description}}</p>
+              <p>De: {{evento.start | date:'dd/MM/yyyy'}} | Até: {{evento.end | date:'dd/MM/yyyy'}}</p>
+            </div>
+          </div>
+    </div>
+</div>

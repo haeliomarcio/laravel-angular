@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   urlApi = 'http://localhost:8000/api/login';
   loginForm: FormGroup;
   token = '';
+  usuario = '';
 
   constructor(
     private http: HttpClient,
@@ -38,7 +39,9 @@ export class LoginComponent implements OnInit {
     .subscribe(data => {
       if(data){
           this.token = data['token'];
+          this.usuario = data['usuario'];
           localStorage.setItem('currentUser', this.token);
+          localStorage.setItem('usuario', this.usuario);
           Swal.fire({
             title: 'Sucesso!',
             text: 'Usuário logado com Sucesso!',

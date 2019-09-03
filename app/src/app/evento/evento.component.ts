@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Evento } from './evento';
 import { EventoService } from './evento.service';
 import Swal from 'sweetalert2';
+import { Usuario } from '../usuario/usuario';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class EventoComponent implements OnInit {
   listEventos = [];
   eventoForm: FormGroup;
   title = 'Cadastrar Novo Evento';
+  usuario = '';
 
   constructor(
     private eventoService: EventoService, 
